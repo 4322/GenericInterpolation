@@ -2,7 +2,7 @@ package frc.utility.interpolation;
 
 import java.util.ArrayList;
 
-public class FiringSolution extends GenericFiringSolution {
+public class FiringSolution extends GenericSolution {
     // An example FiringSolution. Typically this would go alongside whatever
     // subsystem you're using it for.
     private double flywheelSpeed;
@@ -14,7 +14,6 @@ public class FiringSolution extends GenericFiringSolution {
         this.shotAngle = shotAngle;
     }
 
-    @Override
     protected ArrayList<Double> toArrayList() {
         ArrayList<Double> list = new ArrayList<>();
         list.add(flywheelSpeed);
@@ -22,8 +21,7 @@ public class FiringSolution extends GenericFiringSolution {
         return list;
     }
 
-    @Override
-    public GenericFiringSolution fromArrayList(double shotMag, double shotDeg, ArrayList<Double> components) {
+    public FiringSolution fromArrayList(double shotMag, double shotDeg, ArrayList<Double> components) {
         return new FiringSolution(
             shotMag,
             shotDeg, 

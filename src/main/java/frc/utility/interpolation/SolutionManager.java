@@ -7,12 +7,12 @@ import java.util.Comparator;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class FiringSolutionManager {
-  private ArrayList<GenericFiringSolution> solutions;
-  private Comparator<GenericFiringSolution> comparator;
+public class SolutionManager<S extends GenericSolution> {
+  private ArrayList<S> solutions;
+  private Comparator<GenericSolution> comparator;
   private ObjectMapper mapper = new ObjectMapper();
 
-  public FiringSolutionManager(String jsonName, Comparator<GenericFiringSolution> comparator) {
+  public SolutionManager(String jsonName, Comparator<GenericSolution> comparator) {
     this.comparator = comparator;
     // try to read from a json file, otherwise start with an empty list
     if (jsonName != null) {
@@ -22,11 +22,11 @@ public class FiringSolutionManager {
       } catch (Exception e) {
         solutions = new ArrayList<>();
       }
-      }
-      Collections.sort(solutions, comparator);
+    }
+    Collections.sort(solutions, comparator);
   }
 
-  public void addSolution(GenericFiringSolution add) {
+  public void addSolution(S add) {
     // returns (-(insertion point) - 1) if not found
     int i = Collections.binarySearch(solutions, add, comparator);
     if (i >= 0) {
@@ -39,8 +39,8 @@ public class FiringSolutionManager {
     }
   }
 
-  public GenericFiringSolution calcSolutionComponents1D(double shotMag, double shotDeg) {
-    int i = Collections.binarySearch(solutions, new GenericFiringSolution(shotMag, shotDeg), comparator);
+  public GenericSolution calcSolutionComponents1D(double shotMag, double shotDeg) {
+    int i = Collections.binarySearch(solutions, new GenericSolution(shotMag, shotDeg), comparator);
 
     if (i >= 0) {
       return solutions.get(i);
@@ -56,7 +56,9 @@ public class FiringSolutionManager {
       // the first lowest element in the list.
       int upperIdx = -(i + 1);
       int lowerIdx = upperIdx - 1;
-      return GenericFiringSolution.interpolate1D(shotMag, shotDeg, solutions.get(upperIdx), solutions.get(lowerIdx));
+      S upperSolution = solutions.get(upperIdx);
+      S lowerSolution = solutions.get(lowerIdx);
+      return upperSolution.fromArrayList(shotMag, shotDeg, GenericSolution.interpolate1D(shotMag, shotDeg, upperSolution, lowerSolution));
     }
   }
 

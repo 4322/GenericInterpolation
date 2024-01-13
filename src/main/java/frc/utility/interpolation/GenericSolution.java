@@ -2,21 +2,15 @@ package frc.utility.interpolation;
 
 import java.util.ArrayList;
 
-public class GenericFiringSolution {
+public abstract class GenericSolution {
     // DO NOT USE THIS CLASS BY ITSELF!!! Write a class extending this one
     protected double shotMag;
     protected double shotDeg;
 
-    protected GenericFiringSolution(double shotMag, double shotDeg) {
-        this.shotMag = shotMag; 
-        this.shotDeg = shotDeg;
-    }
+    protected abstract ArrayList<Double> toArrayList();
+    protected abstract GenericSolution fromArrayList(double shotMag, double shotDeg, ArrayList<Double> components);
 
-    protected ArrayList<Double> toArrayList() { return null; }
-
-    protected GenericFiringSolution fromArrayList(double shotMag, double shotDeg, ArrayList<Double> components) { return null; }
-
-    protected static GenericFiringSolution interpolate1D(double currentMag, double currentDeg, GenericFiringSolution solution, GenericFiringSolution solution2) {
+    protected static ArrayList<Double> interpolate1D(double currentMag, double currentDeg, GenericSolution solution, GenericSolution solution2) {
         ArrayList<Double> solutionComponents = solution.toArrayList();
         ArrayList<Double> solution2Components = solution2.toArrayList();
         ArrayList<Double> calculatedSolutionComponents = new ArrayList<>();
@@ -29,9 +23,7 @@ public class GenericFiringSolution {
             calculatedSolutionComponents.add(solution2Components.get(i) * d + solutionComponents.get(i) * (1-d));
         }
 
-        GenericFiringSolution calculatedSolution = solution.fromArrayList(currentMag, currentDeg, calculatedSolutionComponents);
-
-        return calculatedSolution;
+        return calculatedSolutionComponents;
     }
 
     public double getShotMag() {

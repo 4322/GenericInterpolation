@@ -34,7 +34,7 @@ public class FiringSolutionManagerTest {
     manager.addSolution(solution2);
     manager.addSolution(solution3);
 
-    FiringSolution calcSolution1 = manager.calcSolutionComponents1D(20, 20);
+    FiringSolution calcSolution1 = 
   }
 
   @Test
