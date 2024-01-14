@@ -1,4 +1,4 @@
-package frc.robot.interpolation;
+package frc.robot.shooting;
 
 import java.util.ArrayList;
 
@@ -22,7 +22,8 @@ public class FiringSolutionManager implements GenericFiringSolutionManager<Firin
   public FiringSolution calcSolution(double currentMag, double currentDeg) {
     FiringSolution inputsToFind = new FiringSolution(currentMag, currentDeg);
     ArrayList<FiringSolution> selectedSolutions = calculator.find(inputsToFind);
-    ArrayList<Double> calculatedComponents = calculator.calculate(currentMag, currentDeg, selectedSolutions);
+    ArrayList<Double> calculatedComponents =
+        calculator.calculate(currentMag, currentDeg, selectedSolutions);
     return new FiringSolution(currentMag, currentDeg, calculatedComponents);
   }
 }

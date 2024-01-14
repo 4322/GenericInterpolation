@@ -1,4 +1,4 @@
-package frc.robot.interpolation;
+package frc.robot.shooting;
 
 import java.util.ArrayList;
 
