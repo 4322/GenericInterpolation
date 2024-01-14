@@ -8,13 +8,25 @@ public class FiringSolution extends GenericFiringSolution {
   private double flywheelSpeed;
   private double shotAngle; // angle at which we should shoot (robot side view)
 
-  public FiringSolution() {}
-
   public FiringSolution(double shotMag, double shotDeg, double flywheelSpeed, double shotAngle) {
     this.shotMag = shotMag;
     this.shotDeg = shotDeg;
     this.flywheelSpeed = flywheelSpeed;
     this.shotAngle = shotAngle;
+  }
+
+  public FiringSolution(double shotMag, double shotDeg, ArrayList<Double> componentList) {
+    this.shotMag = shotMag;
+    this.shotDeg = shotDeg;
+    this.flywheelSpeed = componentList.get(0);
+    this.shotAngle = componentList.get(1);
+  }
+
+  public FiringSolution(double shotMag, double shotDeg) {
+    this.shotMag = shotMag;
+    this.shotDeg = shotDeg;
+    this.flywheelSpeed = 0;
+    this.shotAngle = 0;
   }
 
   @Override
