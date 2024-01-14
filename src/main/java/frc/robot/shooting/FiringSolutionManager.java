@@ -9,9 +9,10 @@ public class FiringSolutionManager implements GenericFiringSolutionManager<Firin
   private final ArrayList<FiringSolution> solutions;
   private final GenericCalculator<FiringSolution> calculator;
 
-  public FiringSolutionManager(GenericCalculator<FiringSolution> calculator) {
-    solutions = new ArrayList<>();
+  public FiringSolutionManager(ArrayList<FiringSolution> solutionArrayList, GenericCalculator<FiringSolution> calculator) {
+    solutions = solutionArrayList;
     this.calculator = calculator;
+    calculator.init(solutions);
   }
 
   public void addSolution(FiringSolution solution) {

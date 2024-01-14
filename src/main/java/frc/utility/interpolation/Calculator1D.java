@@ -19,10 +19,10 @@ public class Calculator1D<S extends GenericFiringSolution> implements GenericCal
     };
   }
 
-  private final ArrayList<S> solutions;
+  private ArrayList<S> solutions;
 
-  public Calculator1D(ArrayList<S> solutions) {
-    this.solutions = solutions;
+  public void init(ArrayList<S> solutionArrayList) {
+    solutions = solutionArrayList;
     solutions.sort(new SortSolution1D<>());
   }
 
@@ -53,6 +53,11 @@ public class Calculator1D<S extends GenericFiringSolution> implements GenericCal
 
   public ArrayList<Double> calculate(double currentMag, double currentDeg,
       ArrayList<S> foundSolutions) {
+
+    if (foundSolutions.size() == 1) {
+      return foundSolutions.get(0).toComponentList();
+    }
+
     ArrayList<Double> s1ComponentList = foundSolutions.get(0).toComponentList();
     ArrayList<Double> s2ComponentList = foundSolutions.get(1).toComponentList();
     ArrayList<Double> calculatedComponentList = new ArrayList<>();
