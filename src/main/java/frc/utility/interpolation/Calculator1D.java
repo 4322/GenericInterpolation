@@ -10,13 +10,13 @@ public class Calculator1D<S extends GenericFiringSolution> implements GenericCal
     @Override
     public int compare(T o1, T o2) {
       if (o1.getShotMag() < o2.getShotMag()) {
-          return -1;
+        return -1;
       } else if (o1.getShotMag() == o2.getShotMag()) {
-          return 0;
+        return 0;
       } else {
-          return 1;
+        return 1;
       }
-  };
+    };
   }
 
   private final ArrayList<S> solutions;
@@ -40,7 +40,7 @@ public class Calculator1D<S extends GenericFiringSolution> implements GenericCal
       toReturn.add(solutions.get(0));
     } else {
       // convert to insertion point (first greatest element in list)
-      // since this is a unique solution, the index below this must be 
+      // since this is a unique solution, the index below this must be
       // the first lowest element in the list.
       int upperIdx = -(i + 1);
       int lowerIdx = upperIdx - 1;

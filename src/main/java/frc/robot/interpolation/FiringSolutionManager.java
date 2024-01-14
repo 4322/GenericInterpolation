@@ -1,12 +1,15 @@
-package frc.utility.interpolation;
+package frc.robot.interpolation;
 
 import java.util.ArrayList;
+
+import frc.utility.interpolation.GenericCalculator;
+import frc.utility.interpolation.GenericFiringSolutionManager;
 
 public class FiringSolutionManager implements GenericFiringSolutionManager<FiringSolution> {
   private final ArrayList<FiringSolution> solutions;
   private final GenericCalculator<FiringSolution> calculator;
 
-  FiringSolutionManager(GenericCalculator<FiringSolution> calculator) {
+  public FiringSolutionManager(GenericCalculator<FiringSolution> calculator) {
     solutions = new ArrayList<>();
     this.calculator = calculator;
   }

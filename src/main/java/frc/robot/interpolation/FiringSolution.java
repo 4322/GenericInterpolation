@@ -1,6 +1,8 @@
-package frc.utility.interpolation;
+package frc.robot.interpolation;
 
 import java.util.ArrayList;
+
+import frc.utility.interpolation.GenericFiringSolution;
 
 public class FiringSolution extends GenericFiringSolution {
   private double shotMag;
@@ -15,14 +17,14 @@ public class FiringSolution extends GenericFiringSolution {
     this.shotAngle = shotAngle;
   }
 
-  public FiringSolution(double shotMag, double shotDeg, ArrayList<Double> componentList) {
+  protected FiringSolution(double shotMag, double shotDeg, ArrayList<Double> componentList) {
     this.shotMag = shotMag;
     this.shotDeg = shotDeg;
     this.flywheelSpeed = componentList.get(0);
     this.shotAngle = componentList.get(1);
   }
 
-  public FiringSolution(double shotMag, double shotDeg) {
+  protected FiringSolution(double shotMag, double shotDeg) {
     this.shotMag = shotMag;
     this.shotDeg = shotDeg;
     this.flywheelSpeed = 0;
@@ -30,7 +32,7 @@ public class FiringSolution extends GenericFiringSolution {
   }
 
   @Override
-  public ArrayList<Double> toComponentList() {
+  protected ArrayList<Double> toComponentList() {
     ArrayList<Double> list = new ArrayList<>();
     list.add(flywheelSpeed);
     list.add(shotAngle);
@@ -46,7 +48,7 @@ public class FiringSolution extends GenericFiringSolution {
   public double getShotDeg() {
     return shotDeg;
   }
-  
+
   public double getFlywheelSpeed() {
     return flywheelSpeed;
   }
