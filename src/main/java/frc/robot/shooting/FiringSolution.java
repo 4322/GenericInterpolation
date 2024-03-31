@@ -31,6 +31,14 @@ public class FiringSolution extends GenericFiringSolution {
     this.shotAngle = 0;
   }
 
+  // for loading from json
+  private FiringSolution() {
+    this.shotMag = 0;
+    this.shotDeg = 0;
+    this.flywheelSpeed = 0;
+    this.shotAngle = 0;
+  }
+
   @Override
   protected ArrayList<Double> toComponentList() {
     ArrayList<Double> list = new ArrayList<>();
