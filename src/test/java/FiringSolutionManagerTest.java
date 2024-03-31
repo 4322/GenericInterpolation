@@ -11,7 +11,7 @@ import frc.utility.interpolation.Calculator1D;
 public class FiringSolutionManagerTest {
   @Test
   public void testFromJson() {
-    FiringSolutionManager manager = FiringSolutionManager.fromJson(new Calculator1D<>(), getClass().getResource("TestSolutions.json").getFile());
+    FiringSolutionManager manager = FiringSolutionManager.createFromJson(new Calculator1D<>(), getClass().getResource("TestSolutions.json").getFile());
 
     FiringSolution calcSolution1 = manager.calcSolution(7.5, 0);
     assertEquals(calcSolution1.getShotMag(), 7.5);
