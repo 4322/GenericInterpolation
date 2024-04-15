@@ -5,10 +5,10 @@ import java.util.ArrayList;
 import frc.utility.interpolation.GenericFiringSolution;
 
 public class FiringSolution extends GenericFiringSolution {
-  private double shotMag;
-  private double shotDeg; // angle from head-on to target (top-down to field)
+  private final double shotMag;
+  private final double shotDeg; // angle from head-on to target (top-down to field)
   private double flywheelSpeed;
-  private double shotAngle; // angle at which we should shoot (robot side view)
+  private double shotAngle; // angle at which we should shoot (for a hooded shooter, pivot, etc.)
 
   public FiringSolution(double shotMag, double shotDeg, double flywheelSpeed, double shotAngle) {
     this.shotMag = shotMag;
@@ -24,11 +24,12 @@ public class FiringSolution extends GenericFiringSolution {
     this.shotAngle = componentList.get(1);
   }
 
-  protected FiringSolution(double shotMag, double shotDeg) {
-    this.shotMag = shotMag;
-    this.shotDeg = shotDeg;
-    this.flywheelSpeed = 0;
-    this.shotAngle = 0;
+  // not to be used for calculations
+  protected FiringSolution(double flywheelSpeed, double shotAngle) {
+    this.shotMag = 0;
+    this.shotDeg = 0;
+    this.flywheelSpeed = flywheelSpeed;
+    this.shotAngle = shotAngle;
   }
 
   // for loading from json
@@ -63,5 +64,13 @@ public class FiringSolution extends GenericFiringSolution {
 
   public double getShotAngle() {
     return shotAngle;
+  }
+
+  public void setFlywheelSpeed(double speed) {
+    flywheelSpeed = speed;
+  }
+
+  public void setShotAngle(double angle) {
+    shotAngle = angle;
   }
 }
