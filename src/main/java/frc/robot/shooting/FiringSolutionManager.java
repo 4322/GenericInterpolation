@@ -75,7 +75,7 @@ public class FiringSolutionManager implements GenericFiringSolutionManager<Firin
   }
 
   public FiringSolution calcSolution(double currentMag, double currentDeg) {
-    FiringSolution inputsToFind = new FiringSolution(currentMag, currentDeg);
+    FiringSolution inputsToFind = new FiringSolution(currentMag, currentDeg, 0, 0);
     ArrayList<FiringSolution> selectedSolutions = calculator.find(inputsToFind);
     ArrayList<Double> calculatedComponents =
         calculator.calculate(currentMag, currentDeg, selectedSolutions);
