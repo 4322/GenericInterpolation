@@ -1,5 +1,5 @@
 package frc.utility.interpolation;
 
-public interface GenericFiringSolutionManager<S extends GenericFiringSolution> {
-  public S calcSolution(double currentMag, double currentDeg);
+public abstract class GenericFiringSolutionManager<S extends GenericFiringSolution> {
+  public abstract S calcSolution(double currentMag, double currentDeg);
 }

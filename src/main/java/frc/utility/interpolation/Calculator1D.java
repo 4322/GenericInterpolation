@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-public class Calculator1D<S extends GenericFiringSolution> implements GenericCalculator<S> {
+public class Calculator1D<S extends GenericFiringSolution> extends GenericCalculator<S> {
 
   private class SortSolution1D<T extends GenericFiringSolution> implements Comparator<T> {
     @Override

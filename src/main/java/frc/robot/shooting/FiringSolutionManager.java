@@ -10,8 +10,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 
-public class FiringSolutionManager implements GenericFiringSolutionManager<FiringSolution> {
-  private final ArrayList<FiringSolution> solutions;
+public class FiringSolutionManager extends GenericFiringSolutionManager<FiringSolution> {
   private final GenericCalculator<FiringSolution> calculator;
 
   public static FiringSolutionManager createEmpty(GenericCalculator<FiringSolution> calculator) {
@@ -23,19 +22,14 @@ public class FiringSolutionManager implements GenericFiringSolutionManager<Firin
   }
 
   public static FiringSolutionManager createFromArrayList(ArrayList<FiringSolution> solutionArrayList, GenericCalculator<FiringSolution> calculator) {
-    final FiringSolutionManager manager = new FiringSolutionManager(solutionArrayList, calculator);
-    manager.init();
-    return manager;
+    for (FiringSolution solution : solutionArrayList) {
+      calculator.addSolution(solution);
+    }
+    return new FiringSolutionManager(calculator);
   }
 
-  private FiringSolutionManager(
-      ArrayList<FiringSolution> solutionArrayList, GenericCalculator<FiringSolution> calculator) {
-    solutions = solutionArrayList;
+  private FiringSolutionManager(GenericCalculator<FiringSolution> calculator) {
     this.calculator = calculator;
-  }
-
-  private void init() {
-    calculator.init(solutions);
   }
 
   private static ArrayList<FiringSolution> readSolutions(String filepath) {
@@ -70,8 +64,7 @@ public class FiringSolutionManager implements GenericFiringSolutionManager<Firin
   }
 
   public void addSolution(FiringSolution solution) {
-    solutions.add(solution);
-    calculator.whenAdded();
+    calculator.addSolution(solution);
   }
 
   public FiringSolution calcSolution(double currentMag, double currentDeg) {
